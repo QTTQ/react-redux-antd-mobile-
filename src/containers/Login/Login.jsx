@@ -26,9 +26,6 @@ class Login extends React.Component {
     componentwillmount() {
 
     }
-    // _loginClick = () => {
-    //     this.props.dispatch(LoginAction("denglu"));
-    // }
     _Register = () => {
         const { history } = this.props
         history.push('/Register')

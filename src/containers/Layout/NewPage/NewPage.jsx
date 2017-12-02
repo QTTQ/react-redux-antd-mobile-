@@ -12,6 +12,8 @@ import { Flex, WhiteSpace } from 'antd-mobile';
 import { createForm } from 'rc-form';
 import 'antd-mobile/dist/antd-mobile.css';  // or 'antd-mobile/dist/antd-mobile.less'
 
+import Header from "../Header/Header";
+
 
 class childe extends Component {
     constructor(props, context) {
@@ -30,9 +32,10 @@ class childe extends Component {
             width: '100%',
         }
         return (
-            <Flex>
-                {this.props.children}
-            </Flex>
+            <div>
+                <Header/>
+                news
+            </div>
         );
     }
 }

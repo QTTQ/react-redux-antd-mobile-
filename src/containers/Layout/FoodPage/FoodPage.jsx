@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { LoginAction } from '../../../store/action';
 
 //antd-mobile
-import { Flex, Carousel, WingBlank } from 'antd-mobile';
+import { Flex, WhiteSpace } from 'antd-mobile';
 import { createForm } from 'rc-form';
 import 'antd-mobile/dist/antd-mobile.css';  // or 'antd-mobile/dist/antd-mobile.less'
 
@@ -17,22 +17,9 @@ import Header from "../Header/Header";
 class childe extends Component {
     constructor(props, context) {
         super(props, context);
-        this.state = {
-            data: ['', '', ''],
-            imgHeight: 176,
-        }
-    }
-    componentDidMount() {
-        // simulate img loading
-        setTimeout(() => {
-            this.setState({
-                data: ['AiyWuByWklrrUDlFignR', 'TekJlZRVCjLFexlOCuWn', 'IJOtIlfsYdTyaDTRVrLI'],
-            });
-        }, 100);
     }
     render() {
         console.log("content---this.propsthis.props", this.props);
-
         let style = {
             backgroundColor: '#ebebef',
             justifyContent: 'center',
@@ -44,35 +31,9 @@ class childe extends Component {
             width: '100%',
         }
         return (
-            <div>
-                <Header />
-                <Carousel
-                    autoplay={true}
-                    infinite
-                    selectedIndex={1}
-                    beforeChange={(from, to) => console.log(`slide from ${from} to ${to}`)}
-                    afterChange={index => console.log('slide to', index)}
-                >
-                    {this.state.data.map(ii => (
-                        <a
-                            key={ii}
-                            href="http://www.alipay.com"
-                            style={{ display: 'inline-block', width: '100%', height: this.state.imgHeight }}
-                        >
-                            <img
-                                src={`https://zos.alipayobjects.com/rmsportal/${ii}.png`}
-                                alt=""
-                                style={{ width: '100%', verticalAlign: 'top' }}
-                                onLoad={() => {
-                                    // fire window resize event to change height
-                                    window.dispatchEvent(new Event('resize'));
-                                    this.setState({ imgHeight: 'auto' });
-                                }}
-                            />
-                        </a>
-                    ))}
-                </Carousel>
-            </div>
+           <div>
+               <Header />
+           </div>
         );
     }
 }
@@ -85,6 +46,8 @@ const mapStateToProps = (state, ownProps) => {
     console.log('statestatestate', state);
     return {
         successLogin: LoginReducer.LoginData
+        // userName: RegisterReducer.userNameState,
+        // passWord: RegisterReducer.passWordState,
     }
 }
 // 将 action 作为 props 绑定到 Product 上。我感觉是把actions方法添加到props上

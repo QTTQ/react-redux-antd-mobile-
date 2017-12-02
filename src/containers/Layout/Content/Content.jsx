@@ -92,8 +92,12 @@ import { TabBar, Flex, WhiteSpace } from 'antd-mobile';
 import { createForm } from 'rc-form';
 import 'antd-mobile/dist/antd-mobile.css';  // or 'antd-mobile/dist/antd-mobile.less'
 
+import Header from "../Header/Header";
 import HomePage from "../HomePage/HomePage";
 import NewPage from "../NewPage/NewPage";
+import FoodPage from "../FoodPage/FoodPage";
+import SetPage from "../SetPage/SetPage";
+
 
 
 class childe extends Component {
@@ -117,36 +121,6 @@ class childe extends Component {
     _changeTitle = (e) => {
         const { selectedTabTitle } = this.state;
         this.props.dispatch(NavTabTextAction(e))
-    }
-    renderContent = (pageText) => {
-        return (
-            <div style={{ backgroundColor: 'white', height: '100%', textAlign: 'center', overflow: 'hidden' }}>
-                {
-                    React.Children.map(this.props.children, (v, i) => {return <div pageText={pageText} className={`cl-${i}`}>{v}</div>})
-                }
-                <div style={{ paddingTop: 60 }}>Clicked “{pageText}” tab， show “{pageText}” information</div>
-                <a style={{ display: 'block', marginTop: 40, marginBottom: 20, color: '#108ee9' }}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        this.setState({
-                            hidden: !this.state.hidden,
-                        });
-                    }}
-                >
-                    Click to show/hide tab-bar
-                </a>
-                <a style={{ display: 'block', marginBottom: 600, color: '#108ee9' }}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        this.setState({
-                            fullScreen: !this.state.fullScreen,
-                        });
-                    }}
-                >
-                    Click to switch fullscreen
-                </a>
-            </div>
-        );
     }
     render() {
         console.log('content---this.props', this.props);
@@ -175,20 +149,18 @@ class childe extends Component {
                         }}
                         />
                         }
-                        selected={this.state.selectedTab === 'blueTab'}
+                        selected={this.state.selectedTab === 'redTab'}
+                        // badge={'首页'}
                         badge={1}
                         onPress={() => {
                             this.setState({
-                                selectedTab: 'blueTab',
+                                selectedTab: 'redTab',
                             });
                             this._changeTitle('首页')
                         }}
                         data-seed="logId"
                     >
-                        <HomePage>
-                            {this.renderContent('HomePage')}
-                        </HomePage>
-
+                        <HomePage />
                     </TabBar.Item>
                     <TabBar.Item
                         icon={
@@ -207,21 +179,19 @@ class childe extends Component {
                             }}
                             />
                         }
-                        title="Koubei"
-                        key="Koubei"
-                        badge={'new'}
-                        selected={this.state.selectedTab === 'redTab'}
+                        title="新闻"
+                        key="新闻"
+                        // badge={'新闻'}
+                        selected={this.state.selectedTab === 'blueTab'}
                         onPress={() => {
                             this.setState({
-                                selectedTab: 'redTab',
+                                selectedTab: 'blueTab',
                             });
                             this._changeTitle('新闻')
                         }}
                         data-seed="logId1"
                     >
-                        <NewPage>
-                        {this.renderContent('Koubei')}
-                        </NewPage>
+                        <NewPage />
                     </TabBar.Item>
                     <TabBar.Item
                         icon={
@@ -240,8 +210,8 @@ class childe extends Component {
                             }}
                             />
                         }
-                        title="Friend"
-                        key="Friend"
+                        title="美食"
+                        key="美食"
                         dot
                         selected={this.state.selectedTab === 'greenTab'}
                         onPress={() => {
@@ -251,7 +221,7 @@ class childe extends Component {
                             this._changeTitle('美食')
                         }}
                     >
-                        {this.renderContent('美食')}
+                        <FoodPage />
                     </TabBar.Item>
                     <TabBar.Item
                         icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/asJMfBrNqpMMlVpeInPQ.svg' }}
@@ -266,7 +236,7 @@ class childe extends Component {
                             this._changeTitle('设置')
                         }}
                     >
-                        {this.renderContent('My')}
+                        <SetPage />
                     </TabBar.Item>
                 </TabBar>
             </div>
